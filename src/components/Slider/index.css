@@ -1,0 +1,20 @@
+.slick-dots {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 280px;
+  margin-left: -46%;
+}
+.slick-arrow {
+  display: none !important;
+}
+
+@media screen and (max-width: 885px) {
+  .slick-dots {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 280px;
+    margin-left: -44%;
+  }
+}

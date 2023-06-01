@@ -5,14 +5,45 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  font-family: "Inter";
+  overflow-x: hidden;
+  ::-webkit-scrollbar {
+    width: 0px !important;
+  }
+  .example::-webkit-scrollbar {
+    display: none;
+  }
+ 
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .example {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+body::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
+}
 a {
   text-decoration: none;
 }
 li {
   list-style: none;
 }
-.container{
+.container {
   width: 100%;
   max-width: 1360px;
   margin: 0 auto;
+}
+@media screen and (max-width: 1281px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+@media screen and (max-width: 885px) {
+  .container {
+    max-width: 800px;
+  }
 }
