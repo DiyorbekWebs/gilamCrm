@@ -25,12 +25,18 @@ const TabListt = styled(TabList)`
   @media screen and (max-width: 885px) {
     flex-wrap: wrap;
   }
+  @media screen and (max-width: 430px) {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 const TabPanell = styled(TabPanel)`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 `;
 const Tab1 = styled(Tab)`
   font-family: "Inter";

@@ -19,6 +19,11 @@ import Telegram from "./telegram.svg";
 import UzumB from "./uzumB.svg";
 import Payme from "./Payme.svg";
 import Click from "./Click.svg";
+import Img from "./img.png";
+import Burger from "./burger.svg"
+import Plus from "./plus.svg"
+import Plus2 from "./plus2.svg"
+import Minus from "./minus.svg"
 export {
   Logo,
   Icon1,
@@ -41,4 +46,9 @@ export {
   Click,
   Payme,
   UzumB,
+  Img,
+  Burger,
+  Plus,
+  Plus2,
+  Minus
 };

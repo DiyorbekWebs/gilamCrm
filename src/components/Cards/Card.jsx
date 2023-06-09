@@ -13,6 +13,22 @@ const Img = styled.img`
     height: 486px;
     width: 385px;
   }
+  @media screen and (max-width: 835px) {
+    width: 390px;
+    height: 470px;
+  }
+  @media screen and (max-width: 801px) {
+    width: 375px;
+    height: 470px;
+  }
+  @media screen and (max-width: 770px) {
+    width: 355px;
+    height: 450px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 100%;
+    height: 430px;
+  }
 `;
 const Bottom = styled.div`
   display: flex;

@@ -19,11 +19,22 @@ const Div = styled.div`
   display: flex;
   align-content: center;
   justify-content: space-between;
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 const Left = styled.div`
   display: flex;
   align-items: center;
   gap: 34px;
+  @media screen and (max-width: 430px) {
+    flex-wrap: wrap;
+    gap: 34px;
+  }
+  @media screen and (max-width: 361px) {
+    gap: 14px;
+  }
 `;
 const Nomer = styled.p`
   font-family: "Inter";
@@ -45,6 +56,13 @@ const Col1 = styled(Left)`
   align-items: flex-start;
   flex-direction: column;
   gap: 9px;
+  @media screen and (max-width: 885px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: 430px) {
+    justify-content: space-between;
+  }
 `;
 const Text1 = styled.p`
   font-family: "Inter";
@@ -65,6 +83,10 @@ const Text3 = styled(Text1)`
 const Texts1 = styled.ul`
   display: flex;
   gap: 30px;
+  @media screen and (max-width: 885px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 const Link1 = styled(Link)`
   font-family: "Inter";
@@ -80,11 +102,18 @@ const Right = styled.div`
   @media screen and (max-width: 1281px) {
     gap: 80px;
   }
+  @media screen and (max-width: 430px) {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 30px;
+    justify-content: space-around;
+  }
 `;
 const Box = styled(Right)`
   gap: 211px;
   @media screen and (max-width: 1281px) {
-    gap: 130px;
+    gap: 20px;
+    flex-direction: column;
   }
 `;
 
@@ -133,6 +162,19 @@ const H1 = styled.h1`
   color: #282a2c;
 `;
 const Hr = styled.hr``;
+const Texts2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+const Texts3 = styled.ul`
+  display: flex;
+  gap: 30px;
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    gap: 10px;
+  }
+`;
 export default function Footer() {
   return (
     <Foooter>
@@ -162,11 +204,13 @@ export default function Footer() {
           <Foot>
             <Box>
               <Col1>
-                <Text1>OOO GRM</Text1>
-                <Text2>
-                  Many desktop publishing packages and web page editors now use
-                  Various.
-                </Text2>
+                <Texts2>
+                  <Text1>OOO GRM</Text1>
+                  <Text2>
+                    Many desktop publishing packages and web page editors now
+                    use Various.
+                  </Text2>
+                </Texts2>
                 <Texts1>
                   <Link to={"tel:0000"}>
                     <Text3>+998 00 000 00 00</Text3>
@@ -185,19 +229,20 @@ export default function Footer() {
                   <Item>Детские</Item>
                   <Item>Аксессуары</Item>
                 </List>
+
                 <List>
-                  <Item>Коллекции</Item>
-                  <Item>Турецкие</Item>
-                  <Item>Эран</Item>
-                  <Item>Узбекистан</Item>
-                  <Item>Италиянские</Item>
-                </List>
-                <List style={{ marginLeft: "20px" }}>
                   <Item>Доку</Item>
                   <Item>Оазис</Item>
                   <Item>Полар</Item>
                   <Item>Сехразад</Item>
                   <Item>Делюкс</Item>
+                </List>
+                <List style={{ marginLeft: "20px" }}>
+                  <Item>Коллекции</Item>
+                  <Item>Турецкие</Item>
+                  <Item>Эран</Item>
+                  <Item>Узбекистан</Item>
+                  <Item>Италиянские</Item>
                 </List>
                 <List style={{ marginLeft: "21px" }}>
                   <Item>Модел</Item>
@@ -224,7 +269,7 @@ export default function Footer() {
               </Paymaount>
               <Hr />
               <Contact>
-                <Texts1>
+                <Texts3>
                   <Text3 style={{ marginRight: "26px" }}>Copyright 2023</Text3>
                   <Text3 style={{ textDecorationLine: "underline" }}>
                     Privacy & Policy
@@ -232,7 +277,7 @@ export default function Footer() {
                   <Text3 style={{ textDecorationLine: "underline" }}>
                     Terms of Use
                   </Text3>
-                </Texts1>
+                </Texts3>
                 <Span>
                   Developed by:
                   <Link to={"/https://getter.uz/"}>

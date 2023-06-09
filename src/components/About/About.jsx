@@ -10,6 +10,9 @@ const Box = styled.div`
     gap: 0px;
   }
   @media screen and (max-width: 885px) {
+    flex-direction: column-reverse;
+    padding: 0px 50px;
+    align-items: center;
   }
 `;
 const Texts = styled.div`
@@ -17,7 +20,9 @@ const Texts = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
-`;
+  @media screen and (max-width: 885px) {
+    align-items: center;
+}`;
 const Tittle = styled.h1`
   font-family: "Inter";
   font-size: 32px;
@@ -25,6 +30,10 @@ const Tittle = styled.h1`
   line-height: 38px;
   letter-spacing: 0em;
   text-align: left;
+  @media screen and (max-width: 430px) {
+  font-size: 28px;
+
+}
 `;
 const Paragrf = styled.p`
   font-family: "Inter";
@@ -39,7 +48,11 @@ const Paragrf = styled.p`
     width: 540px;
   }
   @media screen and (max-width: 885px) {
-    width: 500px;
+    width: 588px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
+    text-align: center;
   }
 `;
 const List = styled.ul`
@@ -49,11 +62,20 @@ const List = styled.ul`
   @media screen and (max-width: 1281px) {
     gap: 50px;
   }
+  @media screen and (max-width: 430px) {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 const Item = styled.li`
   display: flex;
   flex-direction: column;
   gap: 7px;
+  @media screen and (max-width: 430px) {
+    align-items: center;
+    justify-content: center;
+  }
 `;
 const Text1 = styled.h3`
   font-family: "Inter";
@@ -62,6 +84,9 @@ const Text1 = styled.h3`
   line-height: 38px;
   letter-spacing: 0em;
   text-align: left;
+  @media screen and (max-width: 1281px) {
+    font-size: 25px;
+  }
 `;
 const Text2 = styled.p`
   font-family: "Inter";
@@ -78,7 +103,10 @@ const Img = styled.img`
   @media screen and (max-width: 885px) {
     width: 500px;
     height: 500px;
-    
+  }
+  @media screen and (max-width: 430px) {
+    width: 430px;
+    height: 430px;
   }
 `;
 export default function About() {

@@ -29,6 +29,9 @@ const Text2 = styled.p`
   line-height: 20px;
   text-align: center;
   color: #282a2c;
+  @media screen and (max-width: 430px) {
+    width: 100%;
+  }
 `;
 const Btn = styled.div`
   width: 595px;
@@ -37,6 +40,13 @@ const Btn = styled.div`
   border-radius: 100px;
   padding: 15px 32px;
   border: 3px solid #f8501a;
+  @media screen and (max-width: 885px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 330px;
+    padding: 15px 0px;
+  }
 `;
 const Span = styled.span`
   width: 531px;
@@ -51,6 +61,13 @@ const Span = styled.span`
 const Form = styled(Box)`
   flex-direction: row;
   gap: 10px;
+  @media screen and (max-width: 885px) {
+    gap: 30px;
+  }
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    width: 80%;
+  }
 `;
 const Input = styled.input`
   background: #ffffff;
@@ -62,6 +79,12 @@ const Input = styled.input`
   outline: none;
   @media screen and (max-width: 1281px) {
     width: 400px;
+  }
+  @media screen and (max-width: 885px) {
+    width: 230px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
   }
 `;
 export default function ContectH() {

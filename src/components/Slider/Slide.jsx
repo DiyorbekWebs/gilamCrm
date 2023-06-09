@@ -6,6 +6,10 @@ const Item1 = styled.div`
   padding: 87px 0px 118px 0px;
   display: flex !important;
   justify-content: space-between;
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    padding: 10px 0px 50px 0px;
+  }
 `;
 const Div = styled.div`
   background-color: #f3f1ef;
@@ -19,6 +23,10 @@ const Text = styled.p`
   line-height: 36px;
   color: #141516;
   margin-top: 25px;
+  @media screen and (max-width: 430px) {
+    width: 300px;
+    font-size: 22px;
+  }
 `;
 const Img = styled.img`
   width: 546px;

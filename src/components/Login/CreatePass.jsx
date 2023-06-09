@@ -32,6 +32,8 @@ const Bottom = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  @media screen and (max-width: 430px) {
+  }
 `;
 const Text = styled.div`
   font-family: "Inter";
@@ -47,6 +49,9 @@ const Form = styled.form`
   flex-direction: column;
   gap: 10px;
   align-items: flex-start;
+  @media screen and (max-width: 430px) {
+    /* align-items: center; */
+  }
 `;
 const Input = styled.input`
   height: 78px;
@@ -55,6 +60,12 @@ const Input = styled.input`
   border: 1px solid transparent;
   border-bottom-color: #c9cfd8;
   outline: none;
+  @media screen and (max-width: 430px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 300px;
+  }
 `;
 const Texts = styled.div`
   display: flex;
@@ -100,6 +111,9 @@ const Text2 = styled(Text)`
   font-size: 12px;
   width: 400px;
   text-align: start;
+  @media screen and (max-width: 430px) {
+    width: 300px;
+  }
 `;
 const CreatePass = () => {
   return (
@@ -115,7 +129,10 @@ const CreatePass = () => {
             <Forma>
               <Texts2>
                 <Text>Придумайте пароль</Text>
-                <Text2>Пароль должен быть не менее 6 символов и состоять из латинских букв и символов.</Text2>
+                <Text2>
+                  Пароль должен быть не менее 6 символов и состоять из латинских
+                  букв и символов.
+                </Text2>
               </Texts2>
               <Form>
                 <Input

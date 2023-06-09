@@ -39,7 +39,6 @@ const Text = styled.div`
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  text-align: center;
   color: #282828;
 `;
 const Form = styled.form`
@@ -55,6 +54,12 @@ const Input = styled.input`
   border: 1px solid transparent;
   border-bottom-color: #c9cfd8;
   outline: none;
+  @media screen and (max-width: 430px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 300px;
+  }
 `;
 const Texts = styled.div`
   display: flex;
@@ -98,6 +103,9 @@ const Texts2 = styled(Texts)`
 `;
 const Text2 = styled(Text)`
   font-size: 12px;
+  @media screen and (max-width: 430px) {
+    width: 300px;
+  }
 `;
 const ResetPass = () => {
   const [tel,setTel]=React.useState('+998')
@@ -106,7 +114,8 @@ const ResetPass = () => {
       <div className="container">
         <Box>
           <Path>
-            <LinkH>Главная // Продукт //</LinkH>
+            <LinkH>Главная //</LinkH>
+            <LinkH>Продукт //</LinkH>
             <LinkS>Подтверждение</LinkS>
           </Path>
           <Bottom>

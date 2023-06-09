@@ -6,6 +6,7 @@
   box-sizing: border-box;
 }
 body {
+  background-color: #fff !important;
   font-family: "Inter";
   overflow-x: hidden;
   ::-webkit-scrollbar {
@@ -14,7 +15,6 @@ body {
   .example::-webkit-scrollbar {
     display: none;
   }
- 
   
   /* Hide scrollbar for IE, Edge and Firefox */
   .example {
@@ -44,6 +44,39 @@ li {
 
 @media screen and (max-width: 885px) {
   .container {
+    max-width: 830px;
+  }
+}
+@media screen and (max-width: 835px) {
+  .container {
     max-width: 800px;
+  }
+}
+@media screen and (max-width: 801px) {
+  .container {
+    max-width: 770px;
+  }
+}
+@media screen and (max-width: 770px) {
+  .container {
+    max-width: 730px;
+  }
+}@media screen and (max-width: 430px) {
+  .container {
+    max-width: 400px;
+  }
+}
+@media screen and (max-width: 395px) {
+  .container {
+    max-width: 375px;
+  }
+}
+@media screen and (max-width: 376px) {
+  .container {
+    max-width: 360px;
+  }
+}@media screen and (max-width: 361px) {
+  .container {
+    max-width: 345px;
   }
 }

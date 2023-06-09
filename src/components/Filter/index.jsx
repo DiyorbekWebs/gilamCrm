@@ -51,7 +51,7 @@ export const Btn = styled.button`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  background: #d5d5d6;
+  background: transparent;
   opacity: 0.7;
   border: none;
 `;

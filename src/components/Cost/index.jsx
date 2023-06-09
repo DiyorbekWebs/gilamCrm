@@ -4,6 +4,11 @@ import styled from "styled-components";
 const List = styled.ul`
   display: flex;
   gap: 7px;
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+  }
 `;
 const Item = styled.li`
   width: 335px;
@@ -12,6 +17,11 @@ const Item = styled.li`
   padding: 27px 0px 33px 22px;
   display: flex;
   gap: 7px;
+  @media screen and (max-width: 430px) {
+    width: 100%;
+    align-items: center;
+
+}
 `;
 const Texts = styled.div`
   display: flex;

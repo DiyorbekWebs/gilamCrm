@@ -10,8 +10,10 @@ const Box = styled.div`
     padding: 75px 14px 78px 26px;
   }
   @media screen and (max-width: 885px) {
-    /* padding: 35px 4px 38px 20px; */
     padding: 85px 24px 88px 36px;
+  }
+  @media screen and (max-width: 361px) {
+    padding: 60px 15px 60px 15px;
   }
 `;
 const Botm = styled.div`

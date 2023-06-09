@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 const Box = styled.div`
   padding: 40px 0px 215px 0px;
 `;
-const LinkH = styled(Link)`
+export const LinkH = styled(Link)`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -13,13 +13,13 @@ const LinkH = styled(Link)`
   color: #282828;
   opacity: 0.5;
 `;
-const Path = styled.div`
+export const Path = styled.div`
   display: flex;
   align-items: center;
   gap: 13px;
   margin-bottom: 70px;
 `;
-const LinkS = styled(Link)`
+export const LinkS = styled(Link)`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -55,6 +55,12 @@ const Input = styled.input`
   border: 1px solid transparent;
   border-bottom-color: #c9cfd8;
   outline: none;
+  @media screen and (max-width: 430px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 300px;
+  }
 `;
 const Texts = styled.div`
   display: flex;
@@ -72,7 +78,7 @@ const LinkForgetPassword = styled(Link)`
 const SignUp = styled(LinkForgetPassword)`
   color: #f8501a;
 `;
-const Btn = styled.button`
+export const Btn = styled.button`
   padding: 15px 32px;
   font-family: "Inter";
   font-style: normal;

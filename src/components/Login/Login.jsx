@@ -4,6 +4,9 @@ import { styled } from "styled-components";
 const Box = styled.div`
   padding: 40px 0px 215px 0px;
 `;
+const Div = styled.div`
+background-color: #fff;
+`;
 const LinkH = styled(Link)`
   font-family: "Inter";
   font-style: normal;
@@ -55,6 +58,12 @@ const Input = styled.input`
   border: 1px solid transparent;
   border-bottom-color: #c9cfd8;
   outline: none;
+  @media screen and (max-width: 430px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 300px;
+  }
 `;
 const Texts = styled.div`
   display: flex;
@@ -93,7 +102,7 @@ const Forma = styled(Texts)`
 `;
 const Login = () => {
   return (
-    <div>
+    <Div>
       <div className="container">
         <Box>
           <Path>
@@ -109,12 +118,12 @@ const Login = () => {
                   name="text"
                   type="text"
                 ></Input>
-                  <Input
-                    placeholder="Пароль"
-                    name="password"
-                    type="password"
-                    style={{ marginBottom: "50px" }}
-                  ></Input>
+                <Input
+                  placeholder="Пароль"
+                  name="password"
+                  type="password"
+                  style={{ marginBottom: "50px" }}
+                ></Input>
                 <Texts style={{ marginBottom: "40px" }}>
                   <LinkForgetPassword to={"#"}>
                     Забыли пароль?
@@ -127,7 +136,7 @@ const Login = () => {
           </Bottom>
         </Box>
       </div>
-    </div>
+    </Div>
   );
 };
 

@@ -55,6 +55,12 @@ const Input = styled.input`
   border: 1px solid transparent;
   border-bottom-color: #c9cfd8;
   outline: none;
+  @media screen and (max-width: 430px) {
+    width: 330px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 300px;
+  }
 `;
 const Texts = styled.div`
   display: flex;
