@@ -5,6 +5,7 @@ import "./index.css";
 import { tabs } from "../../constant/tabs";
 import { Cards1 } from "../../constant/cards";
 import Card from "./Card";
+import { Link } from "react-router-dom";
 const Content = styled.div`
   padding: 85px 0px 96px 0px;
 `;
@@ -82,7 +83,9 @@ export default function Cards() {
             </TabListt>
             <TabPanell>
               {Cards1?.map((e) => (
-                <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />
+                <Link to="/threepage">
+                  <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />
+                </Link>
               ))}
             </TabPanell>
             <TabPanell>

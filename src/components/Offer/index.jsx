@@ -48,7 +48,7 @@ export default function Offer() {
           <Cards>
             {Ooffer?.map((e) => (
               <>
-                <Card key={e.id} img={e.img} t1={e.title} t2={e.paragrf} />
+                <Card key={e.id} img={e.img} t1={e.title} t2={e.paragrf} col={e.color} />
               </>
             ))}
           </Cards>

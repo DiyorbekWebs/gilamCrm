@@ -6,9 +6,9 @@ import Slider from "@mui/material/Slider";
 import AddIcon from "@mui/icons-material/Add";
 import Collection from "./Collection";
 import { Cards1 } from "../../constant/cards";
-import Card from "../Cards/Card";
 import Pagination from "@mui/material/Pagination";
 import { Deliver } from "../../assets/img/img";
+import Card from "./Card";
 const Div = styled.div``;
 const Box1 = styled.div`
   padding: 40px 0px;
@@ -42,6 +42,10 @@ const Left = styled.div`
   display: flex;
   flex-direction: column;
   width: 290px;
+  @media screen and (max-width: 886px) {
+    width: 200px;
+    background-color: red;
+  }
 `;
 
 export const Btn = styled.button`

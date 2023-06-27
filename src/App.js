@@ -13,6 +13,14 @@ import Profill from "./Pages/Profil/Profill";
 import ZakazP from "./Pages/Profil/Index";
 import Info from "./Pages/Profil/Info";
 import Shop from "./components/Shop/Shop";
+import Filter from "./components/Filter";
+import Texts from "./components/Texts/Texts";
+import About from "./components/Texts/About";
+import Deliver from "./components/Texts/Deliver";
+import Usliga from "./components/Texts/Usliga";
+import Contact from "./components/Texts/Contact";
+import Payout from "./components/Payout/Payout";
+import Index from "./components/ThreePage";
 // import Slidde from "./compon/ents/Shop2/Slidde";
 
 export default function App() {
@@ -27,12 +35,21 @@ export default function App() {
         <Route path="home" element={<Home />} />
         <Route path="catalog" element={<Catalog />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="threepage" element={<Index />} />
+        <Route path="payout" element={<Payout />} />
+        <Route path="fill" element={<Filter />} />
         {/* <Route path="page" element={<Slidde/>} /> */}
         <Route path="profil" element={<ProfilMain />}>
           <Route index element={<Profill />} />
           <Route path="zakaz" element={<ZakazP />} />
           <Route path="info" element={<Info />} />
           <Route path="rename" element={<ZakazP />} />
+        </Route>
+        <Route path="text" element={<Texts />}>
+          <Route index element={<About />} />
+          <Route path="delver" element={<Deliver />} />
+          <Route path="usligi" element={<Usliga />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Route>
     </Routes>

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
+import UseModal from "../../hooks/useModal";
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap:30px;
+  gap: 30px;
   cursor: default;
+  position: relative;
 `;
 const Img = styled.img`
   height: 456px;
@@ -38,6 +40,7 @@ const Texts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+  background-color: #fff;
 `;
 const Size = styled.span`
   font-family: "Inter";
@@ -62,7 +65,32 @@ const Text2 = styled(Text1)`
   font-size: 13px;
   line-height: 16px;
 `;
+const Modal = styled.div`
+  transition: 1s;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+  position: absolute;
+  top: 60%;
+  right: 5%;
+  z-index: 1;
+  box-shadow: 0px 0px 5px lightgrey, 0px 0px 7px lightgrey,
+    0px 0px 10px lightgrey;
+`;
+const Text3 = styled(Text2)`
+  opacity: 0.3;
+`;
 export default function Card({ img, t1, t2 }) {
+  const { open, toggleM, closeM } = UseModal();
+  const menuRef = useRef();
+  const imgRef = useRef();
+  window.addEventListener("click", (e) => {
+    if (e.target !== menuRef.current && e.target !== imgRef.current) {
+      closeM(); 
+    }
+  });
   return (
     <Content>
       <Img src={img} />
@@ -71,7 +99,31 @@ export default function Card({ img, t1, t2 }) {
           <Text1>{t1}</Text1>
           <Text2>{t2}</Text2>
         </Texts>
-        <Size>Размеры</Size>
+        {open ? (
+          <Modal
+            ref={menuRef}
+            style={{
+              transition: "1s",
+            }}
+          >
+            <Text3>100x200</Text3>
+            <Text3>250x300</Text3>
+            <Text3>300x300</Text3>
+            <Text3>350x500</Text3>
+          </Modal>
+        ) : (
+          <Modal
+            style={{
+              zIndex: -1,
+              transition: "1s",
+              transform: "translateX(-200%)",
+              padding:"0px"
+            }}
+          ></Modal>
+        )}
+        <Size onClick={() => toggleM()} ref={imgRef}>
+          Размеры
+        </Size>
       </Bottom>
     </Content>
   );

@@ -20,10 +20,22 @@ import UzumB from "./uzumB.svg";
 import Payme from "./Payme.svg";
 import Click from "./Click.svg";
 import Img from "./img.png";
-import Burger from "./burger.svg"
-import Plus from "./plus.svg"
-import Plus2 from "./plus2.svg"
-import Minus from "./minus.svg"
+import Burger from "./burger.svg";
+import Plus from "./plus.svg";
+import Plus2 from "./plus2.svg";
+import Minus from "./minus.svg";
+import Carpet from "./carpet 1.svg";
+import Logo2 from "./logo2.png";
+import Num1 from "./Num1.svg";
+import Num2 from "./Num2.svg";
+import Num3 from "./Num3.svg";
+import Payme2 from "./Payme2.svg";
+import Money from "./Money.svg";
+import Visa from "./Visa.svg";
+import Card from "./Card.svg";
+import Gilam1 from "./Gilam.png";
+import Gilam2 from "./Gilam3.png";
+import Share from "./Icons.svg";
 export {
   Logo,
   Icon1,
@@ -50,5 +62,17 @@ export {
   Burger,
   Plus,
   Plus2,
-  Minus
+  Minus,
+  Carpet,
+  Logo2,
+  Num1,
+  Num2,
+  Num3,
+  Payme2,
+  Money,
+  Card,
+  Visa,
+  Gilam1,
+  Gilam2,
+  Share
 };

@@ -37,9 +37,28 @@ const Btn = styled.div`
   width: 595px;
   display: flex;
   align-items: center;
+  justify-content: center;
   border-radius: 100px;
   padding: 15px 32px;
   border: 3px solid #f8501a;
+  transition: 1s;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  color: #f8501a;
+  transition: 1s;
+  &:hover{
+    transition: 1s;
+    color: #fff;
+}
+  &:hover{
+    transition: 1s;
+    color: #fff !important;
+    background-color: #f8501a;
+  }
   @media screen and (max-width: 885px) {
     width: 450px;
   }
@@ -48,16 +67,8 @@ const Btn = styled.div`
     padding: 15px 0px;
   }
 `;
-const Span = styled.span`
-  width: 531px;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
-  text-align: center;
-  color: #f8501a;
-`;
+
+
 const Form = styled(Box)`
   flex-direction: row;
   gap: 10px;
@@ -105,7 +116,7 @@ export default function ContectH() {
             <Input placeholder="Телефон " />
           </Form>
           <Btn>
-            <Span>Отправить для обратного звонка</Span>
+          Отправить для обратного звонка
           </Btn>
         </Box>
       </div>

@@ -5,7 +5,6 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 57px;
-  background-color: red;
   @media screen and (max-width: 1281px) {
     padding: 75px 14px 78px 26px;
   }
@@ -50,9 +49,9 @@ const Img = styled.img`
   width: 100px;
   height: 100px;
 `;
-export default function Card({ img, t1, t2 }) {
+export default function Card({ img, t1, t2 ,col}) {
   return (
-    <Box>
+    <Box style={{backgroundColor:`${col}`}}>
       <Img src={img} alt="" />
       <Botm>
         <Text1>{t1}</Text1>

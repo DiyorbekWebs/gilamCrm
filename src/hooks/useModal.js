@@ -12,7 +12,7 @@ const UseModal = () => {
   const toggleM = () => {
     setOpen(!open);
   };
-  return {open, openM, closeM,toggleM};
+  return { open, openM, closeM, toggleM };
 };
 
 export default UseModal;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import {
   Burger,
@@ -13,8 +13,10 @@ import {
 import { Link } from "react-router-dom";
 import { ListInfor } from "../../constant/hlist";
 import UseModal from "../../hooks/useModal";
+import Modal2 from "./Modal2/Modal2";
 const Content = styled.div`
-  background-color: #f3f1ef;
+  background-color: #ffff;
+  position: relative;
 `;
 const Box = styled.div`
   padding: 25px 0px;
@@ -168,8 +170,11 @@ const Icon = styled.img`
 const ItemM = styled(Item)`
   font-size: 16px;
 `;
+
 export function Header() {
-  const { open, openM, closeM, toggleM } = UseModal();
+  const { open, closeM, toggleM } = UseModal();
+  const { open: open2,closeM:closeM2, toggleM: toggleM2 } = UseModal();
+
   return (
     <Content>
       <div className="container">
@@ -178,7 +183,7 @@ export function Header() {
             <Link to={"home"}>
               <Logotip src={Logo} />
             </Link>
-            <Link to={"catalog"}>
+            <Link  onClick={() => toggleM()}>
               <Catalog>
                 <img src={Icon1} alt="" />
                 <ProText>Каталог продуктов</ProText>
@@ -202,7 +207,7 @@ export function Header() {
               <ProText>Посмотреть в комнате</ProText>
             </Comnate>
             <Link to={"profil/rename"}>
-            <img src={Icon4} alt="" />
+              <img src={Icon4} alt="" />
             </Link>
             <Link to={"shop"}>
               <img src={Icon5} alt="" />
@@ -211,11 +216,12 @@ export function Header() {
               <img src={Icon6} alt="" />
             </Link>
           </Left>
-          <BurgerImg onClick={() => toggleM()} src={Burger} alt="" />
-          {open ? (
+          <BurgerImg onClick={() => toggleM2()} src={Burger} alt="" />
+          {open ? <Modal2 /> : null}
+          {open2 ? (
             <Modal>
               <ListM>
-                <Link>
+                <Link to={"catalog"}>
                   <ItemM>Каталог продуктов</ItemM>
                 </Link>
                 {ListInfor?.map((e) => (
@@ -223,14 +229,22 @@ export function Header() {
                     <ItemM>{e.text}</ItemM>
                   </Link>
                 ))}
-                <Comnate>
-                  <img src={Icon3} alt="" />
-                  <ItemM>Посмотреть в комнате</ItemM>
-                </Comnate>
+                <Link>
+                  <Comnate>
+                    <img src={Icon3} alt="" />
+                    <ItemM>Посмотреть в комнате</ItemM>
+                  </Comnate>
+                </Link>
                 <Icons>
-                  <Icon src={Icon4} alt="" />
-                  <Icon src={Icon5} alt="" />
-                  <Icon src={Icon6} alt="" />
+                  <Link to={"profil/rename"}>
+                    <Icon src={Icon4} alt="" />
+                  </Link>
+                  <Link to={"shop"}>
+                    <Icon src={Icon5} alt="" />
+                  </Link>
+                  <Link to={"profil"}>
+                    <Icon src={Icon6} alt="" />
+                  </Link>
                 </Icons>
               </ListM>
             </Modal>

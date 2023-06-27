@@ -1,5 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Gilam } from "../../assets/img/img";
 const Box = styled.div`
   display: flex;
   gap: 25px;
@@ -56,7 +57,7 @@ const T4 = styled.p`
 const Card1 = () => {
   return (
     <Box>
-      <Img></Img>
+      <Img src={Gilam}></Img>
       <Left>
         <Texts>
           <T1>Oasis 3455</T1>
