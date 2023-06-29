@@ -2,6 +2,7 @@ import React from "react";
 import { styled } from "styled-components";
 import { LinkH, LinkS } from "../Login/Confirmation";
 import { Minus, Plus } from "../../assets/img/img";
+import { Link } from "react-router-dom";
 const Div = styled.div`
   padding: 40px 0px 100px 0px;
 `;
@@ -20,10 +21,10 @@ const Bottom = styled.div`
   gap: 63px;
   @media screen and (max-width: 801px) {
     gap: 40px;
-}
-@media screen and (max-width: 430px) {
+  }
+  @media screen and (max-width: 430px) {
     flex-direction: column;
-}
+  }
 `;
 const Left = styled(Box)`
   gap: 10px;
@@ -140,8 +141,7 @@ const ChickList = styled.div`
   }
   @media screen and (max-width: 430px) {
     width: 100%;
-
-}
+  }
 `;
 const Right = styled.div`
   display: flex;
@@ -208,7 +208,6 @@ const Button = styled.button`
   border: none;
   @media screen and (max-width: 885px) {
     padding: 20px 110px 20px 110px;
-
   }
 `;
 const Shop = () => {
@@ -306,7 +305,9 @@ const Shop = () => {
                   <T8>5 290 000 сум</T8>
                 </Text>
               </ChickList>
-              <Button>Оформить заказ</Button>
+              <Link to={'/payout'}>
+                <Button>Оформить заказ</Button>
+              </Link>
             </Right>
           </Bottom>
         </Box>
