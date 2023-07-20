@@ -6,6 +6,7 @@ import { tabs } from "../../constant/tabs";
 import { Cards1 } from "../../constant/cards";
 import Card from "./Card";
 import { Link } from "react-router-dom";
+import axios from "axios";
 const Content = styled.div`
   padding: 85px 0px 96px 0px;
 `;
@@ -71,6 +72,9 @@ const Btn = styled.div`
   color: #282828;
 `;
 export default function Cards() {
+  const [value,setValue]=React.useState([])
+  axios.get("https://grm.getter.uz/product/internet-shop").then((e)=>setValue(e.data.items))
+  // console.log(value)
   return (
     <Content>
       <div className="container">
@@ -82,17 +86,17 @@ export default function Cards() {
               ))}
             </TabListt>
             <TabPanell>
-              {Cards1?.map((e) => (
-                <Link to="/threepage">
-                  <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />
+              {value?.map((e) => (
+                <Link to="/threepage" key={e.id}>
+                  <Card  img={e.imgUrl} t1={e.model.collection.title} t2={e.model.title} />
                 </Link>
               ))}
             </TabPanell>
-            <TabPanell>
-              {Cards1?.map((e) => (
-                <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />
-              ))}
-            </TabPanell>
+            {/*<TabPanell>*/}
+            {/*  {Cards1?.map((e) => (*/}
+            {/*    <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />*/}
+            {/*  ))}*/}
+            {/*</TabPanell>*/}
           </Tabss>
           <Btn>Посмотреть все</Btn>
         </Box>

@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Catalog from "./Pages/Catalog";
 import Login from "./components/Login/Login";
-import Signup from "./components/Login/SignUp";
+// import Signup from "./components/Login/SignUp";
 import Confirm from "./components/Login/Confirmation";
 import CreatePass from "./components/Login/CreatePass";
 import ResetPass from "./components/Login/Resetpass";
@@ -20,15 +20,18 @@ import Deliver from "./components/Texts/Deliver";
 import Usliga from "./components/Texts/Usliga";
 import Contact from "./components/Texts/Contact";
 import Payout from "./components/Payout/Payout";
+// import Index from "./components/3chipage";
+import SignUp2 from "./components/Login/SignUp2";
 import Index from "./components/ThreePage";
 // import Slidde from "./compon/ents/Shop2/Slidde";
 
 export default function App() {
+  
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Login />} />
-        <Route path="signup" element={<Signup />} />
+        <Route path="signup" element={<SignUp2 />} />
         <Route path="confirm" element={<Confirm />} />
         <Route path="createpass" element={<CreatePass />} />
         <Route path="resetpass" element={<ResetPass />} />
@@ -36,6 +39,8 @@ export default function App() {
         <Route path="catalog" element={<Catalog />} />
         <Route path="shop" element={<Shop />} />
         <Route path="threepage" element={<Index />} />
+        {/* <Route path="page3" element={<Index />} /> */}
+
         <Route path="payout" element={<Payout />} />
         <Route path="fill" element={<Filter />} />
         {/* <Route path="page" element={<Slidde/>} /> */}
@@ -52,6 +57,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
         </Route>
       </Route>
+      
     </Routes>
   );
 }

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import UseInput from "../../hooks/useInput";
+import axios from "axios";
 const Section = styled.div`
   padding: 80px 0px 150px 0px;
 `;
@@ -50,11 +52,11 @@ const Btn = styled.div`
   text-align: center;
   color: #f8501a;
   transition: 1s;
-  &:hover{
+  &:hover {
     transition: 1s;
     color: #fff;
-}
-  &:hover{
+  }
+  &:hover {
     transition: 1s;
     color: #fff !important;
     background-color: #f8501a;
@@ -67,7 +69,6 @@ const Btn = styled.div`
     padding: 15px 0px;
   }
 `;
-
 
 const Form = styled(Box)`
   flex-direction: row;
@@ -99,6 +100,29 @@ const Input = styled.input`
   }
 `;
 export default function ContectH() {
+  const obj = {
+    name: "",
+    location: "",
+    phone: "",
+  };
+
+  const { value, changeValue } = UseInput(obj);
+  const send = () => {
+    axios
+      .post("https://grm.getter.uz/client-request", value)
+      .then(function (response) {
+        console.log(response.data);
+        if (response.data) {
+          alert("Kirishingiz mumkin!");
+          window.location.href = "/home";
+        } else {
+          alert("login topilmadi");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
   return (
     <Section>
       <div className="container">
@@ -111,13 +135,15 @@ export default function ContectH() {
             </Text2>
           </Texts>
           <Form>
-            <Input placeholder="Ваше имя" />
-            <Input placeholder="Где живёте" />
-            <Input placeholder="Телефон " />
+            <Input placeholder="Ваше имя" name="name" onChange={changeValue} />
+            <Input
+              placeholder="Где живёте"
+              name="location"
+              onChange={changeValue}
+            />
+            <Input placeholder="Телефон " name="phone" onChange={changeValue} />
           </Form>
-          <Btn>
-          Отправить для обратного звонка
-          </Btn>
+          <Btn onClick={() => send()}>Отправить для обратного звонка</Btn>
         </Box>
       </div>
     </Section>

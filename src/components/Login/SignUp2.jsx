@@ -2,7 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { styled } from "styled-components";
 import UseInput from "../../hooks/useInput";
+import { useAxios } from "../../hooks/useAxios";
 import axios from "axios";
+import { request } from "../../config/reques";
 const Box = styled.div`
   padding: 40px 0px 215px 0px;
 `;
@@ -102,25 +104,18 @@ const Forma = styled(Texts)`
   align-items: flex-start;
   gap: 40px;
 `;
-const Login = () => {
+const SignUp2 = () => {
   const obj = {
     login: "",
     password: "",
   };
   const { value, changeValue } = UseInput(obj);
+
   const submit = () => {
     axios
-      .post("https://grm.getter.uz/auth/login", value)
+      .post("https://grm.getter.uz/user/client", value)
       .then(function (response) {
         console.log(response.data);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-
-        if (response.data) {
-          alert("Kirishingiz mumkin!");
-          window.location.href = "/home";
-        } else {
-          alert("login topilmadi");
-        }
       })
       .catch(function (error) {
         console.log(error);
@@ -136,7 +131,7 @@ const Login = () => {
           </Path>
           <Bottom>
             <Forma>
-              <Text>Войти</Text>
+              <Text>Регистрация</Text>
               <Form>
                 <Input
                   placeholder="Телефони или имя пользователья"
@@ -152,12 +147,12 @@ const Login = () => {
                   style={{ marginBottom: "50px" }}
                 ></Input>
                 <Texts style={{ marginBottom: "40px" }}>
-                  <LinkForgetPassword to={"#"}>
+                  {/* <LinkForgetPassword to={"#"}>
                     Забыли пароль?
-                  </LinkForgetPassword>
-                  <SignUp to={"/signup"}>Зарегистрироваться</SignUp>
+                  </LinkForgetPassword> */}
+                  <SignUp to={"/"}>У меня есть аккаунт!</SignUp>
                 </Texts>
-                <Btn onClick={() => submit()}>Войти в аккаунт</Btn>
+                <Btn onClick={() => submit()}>Зарегистрироваться</Btn>
               </Form>
             </Forma>
           </Bottom>
@@ -167,4 +162,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp2;

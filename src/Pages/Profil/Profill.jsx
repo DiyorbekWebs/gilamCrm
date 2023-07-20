@@ -2,6 +2,8 @@ import React from "react";
 import { styled } from "styled-components";
 import { Img } from "../../assets/img/img";
 import { Btn } from "../../components/Login/Confirmation";
+import UseInput from "../../hooks/useInput";
+import axios from "axios";
 const Box = styled.div`
   display: flex;
   gap: 40px;
@@ -38,7 +40,7 @@ const Date = styled.p`
   color: #000;
   font-size: 14px;
 `;
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   flex-direction: column;
   gap: 83px;
@@ -65,39 +67,72 @@ const Input = styled.input`
   }
 `;
 const Profill = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const { id } = user;
+  // console.log(firstName);
+
+  const obj = {
+    firstName: "",
+    lastName: "",
+    avatar: "",
+    email: "",
+    phone: "",
+  };
+  const { value, changeValue } = UseInput(obj);
+  const send = () => {
+    axios
+      .patch(`https://grm.getter.uz/user/client/${id}`, value)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        
+      });
+  };
   return (
     <Box>
       <DivImg src={Img} />
       <Right>
         <Users>
-          <Text>Firdavs Muzafarov</Text>
+          <Text>{id}</Text>
           <SignUp>
             Регистрировани в: <Date>12.04.2023</Date>
           </SignUp>
         </Users>
         <Form>
           <Inputs>
-            <Input placeholder="Имя " name="name" id="name" type="text" />
+            <Input
+              placeholder="Имя "
+              name="name"
+              id="name"
+              type="text"
+              onChange={changeValue}
+            />
             <Input
               placeholder="Адрес электронной почты "
-              name="mail"
+              name="email"
               id="mail"
               type="text"
+              onChange={changeValue}
             />
             <Input
               placeholder="Фамилия "
-              name="surname"
+              name="lastname"
               id="surname"
               type="text"
+              onChange={changeValue}
             />
             <Input
               placeholder="Номер телефона "
               name="phone"
               id="phone"
               type="text"
+              onChange={changeValue}
             />
           </Inputs>
-          <Btn>Сохранить изменения</Btn>
+          <Btn onClick={() => send()}>Сохранить изменения</Btn>
         </Form>
       </Right>
     </Box>

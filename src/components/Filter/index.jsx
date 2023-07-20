@@ -216,9 +216,7 @@ export default function Filter() {
             <Right>
               <Cards>
                 {Cards1?.map((e) => (
-                  <>
-                    <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />
-                  </>
+                  <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />
                 ))}
               </Cards>
               <RightBtm>
