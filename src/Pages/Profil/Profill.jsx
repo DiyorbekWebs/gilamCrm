@@ -69,14 +69,12 @@ const Input = styled.input`
 const Profill = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const { id } = user;
+  const { firstName, id } = user;
   // console.log(firstName);
 
   const obj = {
-    firstName: "",
-    lastName: "",
-    avatar: "",
-    email: "",
+    name: "",
+    location: "",
     phone: "",
   };
   const { value, changeValue } = UseInput(obj);
@@ -88,7 +86,6 @@ const Profill = () => {
       })
       .catch(function (error) {
         console.log(error);
-        
       });
   };
   return (
@@ -96,7 +93,7 @@ const Profill = () => {
       <DivImg src={Img} />
       <Right>
         <Users>
-          <Text>{id}</Text>
+          <Text>{firstName}</Text>
           <SignUp>
             Регистрировани в: <Date>12.04.2023</Date>
           </SignUp>
@@ -119,10 +116,10 @@ const Profill = () => {
             />
             <Input
               placeholder="Фамилия "
-              name="lastname"
-              id="surname"
+              // name="lastname"
+              // id="surname"
               type="text"
-              onChange={changeValue}
+              // onChange={changeValue}
             />
             <Input
               placeholder="Номер телефона "

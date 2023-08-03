@@ -72,8 +72,13 @@ const Btn = styled.div`
   color: #282828;
 `;
 export default function Cards() {
-  const [value,setValue]=React.useState([])
-  axios.get("https://grm.getter.uz/product/internet-shop").then((e)=>setValue(e.data.items))
+  const [value, setValue] = React.useState([]);
+  React.useEffect(() => {
+    axios.get("https://grm.getter.uz/product/internet-shop").then((e) => {
+      setValue(e.data.items);
+      console.log(e);
+    });
+  }, []);
   // console.log(value)
   return (
     <Content>
@@ -87,9 +92,13 @@ export default function Cards() {
             </TabListt>
             <TabPanell>
               {value?.map((e) => (
-                <Link to="/threepage" key={e.id}>
-                  <Card  img={e.imgUrl} t1={e.model.collection.title} t2={e.model.title} />
-                </Link>
+                <Card
+                  key={e.id}
+                  id={e.id}
+                  img={e.imgUrl}
+                  t1={e.model.collection.title}
+                  t2={e.model.title}
+                />
               ))}
             </TabPanell>
             {/*<TabPanell>*/}

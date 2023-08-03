@@ -36,6 +36,7 @@ import Card from "./Card.svg";
 import Gilam1 from "./Gilam.png";
 import Gilam2 from "./Gilam3.png";
 import Share from "./Icons.svg";
+import Heart from "./heartIcon.svg";
 export {
   Logo,
   Icon1,
@@ -74,5 +75,6 @@ export {
   Visa,
   Gilam1,
   Gilam2,
-  Share
+  Share,
+  Heart,
 };

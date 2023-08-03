@@ -1,6 +1,10 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import UseModal from "../../hooks/useModal";
+import { Link } from "react-router-dom";
+import { Heart } from "../../assets/img/img";
+import "./index.css";
+import axios from "axios";
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,7 +38,9 @@ const Img = styled.img`
 `;
 const Bottom = styled.div`
   display: flex;
-  gap: 157px;
+  gap: 120px;
+  align-items: flex-start;
+  justify-content: flex-start;
 `;
 const Texts = styled.div`
   display: flex;
@@ -82,18 +88,64 @@ const Modal = styled.div`
 const Text3 = styled(Text2)`
   opacity: 0.3;
 `;
-export default function Card({ img, t1, t2 }) {
+const HeartIcon = styled.img`
+  width: 30px;
+  height: 30px;
+`;
+const Div = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+`;
+export default function Card({ img, t1, t2, id }) {
   const { open, toggleM, closeM } = UseModal();
+  const { open: open2, toggleM: toggle2 } = UseModal();
   const menuRef = useRef();
   const imgRef = useRef();
   window.addEventListener("click", (e) => {
     if (e.target !== menuRef.current && e.target !== imgRef.current) {
-      closeM(); 
+      closeM();
     }
   });
+  async function add() {
+   await axios
+      .post(`http://192.168.0.119:4000/user/add-favorite-product/${id}`, {
+        withCredentials: true,
+      })
+      .then((e) => {
+        console.log(e);
+      })
+      .catch(err =>console.log(err));
+  }
+
+  // async function add() {
+  //   await fetch(`http://192.168.0.119:4000/user/add-favorite-product/${id}`, {
+  //     withCredentials: false,
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((e) => {
+  //       console.log(e, "s");
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+  function remove() {
+    axios
+      .post(`https://grm.getter.uz/user/remove-favorite-product/${id}`, {
+        withCredentials: true,
+      })
+      .then((e) => {
+        console.log(e);
+      });
+  }
   return (
     <Content>
-      <Img src={img} />
+      <Link to="/threepage">
+        <Img src={img} />
+      </Link>
       <Bottom>
         <Texts>
           <Text1>{t1}</Text1>
@@ -117,13 +169,30 @@ export default function Card({ img, t1, t2 }) {
               zIndex: -1,
               transition: "1s",
               transform: "translateX(-200%)",
-              padding:"0px"
+              padding: "0px",
             }}
           ></Modal>
         )}
-        <Size onClick={() => toggleM()} ref={imgRef}>
-          Размеры
-        </Size>
+        <Div>
+          <HeartIcon
+            src={Heart}
+            alt=""
+            className={open2 ? "heart" : null}
+            // className="heart"
+            // className={"heart"}
+            onClick={() => {
+              toggle2();
+              if (open2) {
+                add();
+              } else {
+                console.log("hechnima");
+              }
+            }}
+          />
+          <Size onClick={() => toggleM()} ref={imgRef}>
+            Размеры
+          </Size>
+        </Div>
       </Bottom>
     </Content>
   );

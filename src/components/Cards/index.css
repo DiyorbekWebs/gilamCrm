@@ -7,3 +7,7 @@
 }
 
 /* padding: 0px 2px 10px 2px; */
+.heart {
+  filter: invert(18%) sepia(68%) saturate(4922%) hue-rotate(345deg)
+    brightness(89%) contrast(136%);
+}

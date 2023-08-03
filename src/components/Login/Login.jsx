@@ -110,11 +110,12 @@ const Login = () => {
   const { value, changeValue } = UseInput(obj);
   const submit = () => {
     axios
-      .post("https://grm.getter.uz/auth/login", value)
+      .post(`${process.env["REACT_APP_URL_ENV"]}`, value, {
+        withCredentials: true,
+      })
       .then(function (response) {
         console.log(response.data);
         localStorage.setItem("user", JSON.stringify(response.data.user));
-
         if (response.data) {
           alert("Kirishingiz mumkin!");
           window.location.href = "/home";

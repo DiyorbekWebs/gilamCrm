@@ -115,7 +115,9 @@ const SignUp2 = () => {
     axios
       .post("https://grm.getter.uz/user/client", value)
       .then(function (response) {
-        console.log(response.data);
+        if (response.data) {
+          window.location.href = "/";
+        }
       })
       .catch(function (error) {
         console.log(error);

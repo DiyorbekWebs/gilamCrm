@@ -1,28 +1,24 @@
-import React from "react";
-import { request } from "../config/reques";
-export const useAxios = ({ method = null, url = null, body = null }) => {
-  const [response, setResponse] = React.useState([]);
-  const [error, setError] = React.useState({});
-  const [isLoading, setIsLoading] = React.useState(true);
+import { useState } from 'react';
+import axios from 'axios';
 
-  const fetchdata = () => {
-    request({
-      method: method,
-      url: url,
-      body: body,
-    })
-      .then((el) => {
-        setResponse(el.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  };
-  React.useEffect(() => {
-    if (url && method) {
-      fetchdata();
+export const useAxios = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState(null);
+  const [error, setError] = useState(null);
+
+  const doPost = async (method,url, postData) => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await axios[method](url, postData);
+      setData(response.data);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
     }
-  }, [method, body, url]);
-  return { response, error, isLoading };
+  };
+
+  return { isLoading, data, error, doPost };
 };
+
