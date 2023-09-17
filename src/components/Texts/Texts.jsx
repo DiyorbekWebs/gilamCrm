@@ -2,13 +2,18 @@ import React from "react";
 import { styled } from "styled-components";
 import { textLi } from "../../constant/texts/text";
 import { Link, Outlet } from "react-router-dom";
+import "./index.css";
 const Content = styled.div``;
 const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 52px;
 `;
-const Right = styled.div``;
+const Right = styled.div`
+  @media screen and (max-width: 430px) {
+  padding-bottom: 50px;
+}
+`;
 const Item = styled.li`
   font-family: "Inter";
   font-style: normal;
@@ -25,6 +30,10 @@ const Item = styled.li`
 const Bottom = styled.div`
   display: flex;
   gap: 72px;
+  @media screen and (max-width: 430px) {
+    flex-direction: column;
+    gap: 0px;
+  }
 `;
 const Left = styled.ul`
   display: flex;
@@ -33,7 +42,18 @@ const Left = styled.ul`
   height: 100vh;
   padding-right: 63px;
   border: 1px solid transparent;
-  border-right: 1px solid rgb(233,234,234);
+  border-right: 1px solid rgb(233, 234, 234);
+  @media screen and (max-width: 430px) {
+    flex-direction: row;
+    gap: 20px;
+    row-gap: 0px;
+    flex-wrap: wrap;
+    border: none;
+    padding-right: 0px;
+    height: 100px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgb(233, 234, 234);
+  }
 `;
 export const LinkH = styled(Link)`
   font-family: "Inter";
@@ -58,6 +78,7 @@ export const LinkS = styled(Link)`
   color: #f8501a;
 `;
 const Texts = () => {
+  const [count, setCount] = React.useState(1);
   return (
     <Content>
       <div className="container">
@@ -70,8 +91,10 @@ const Texts = () => {
           <Bottom>
             <Left>
               {textLi?.map((e) => (
-                <Link key={e.id} to={e.path}>
-                  <Item>{e.title}</Item>
+                <Link onClick={() => setCount(e.id)} key={e.id} to={e.path}>
+                  <Item className={count === e.id ? "active" : null}>
+                    {e.title}
+                  </Item>
                 </Link>
               ))}
             </Left>

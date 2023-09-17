@@ -1,6 +1,6 @@
 import React from "react";
 import { styled } from "styled-components";
-import { Gilam1, Gilam2 } from "../../assets/img/img";
+// import { Gilam1, Gilam2 } from "../../assets/img/img";
 import { imges } from "../3chipage/imges";
 const Box = styled.div`
   display: flex;

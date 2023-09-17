@@ -6,6 +6,9 @@ const Box = styled.div`
   gap: 24px;
   margin-left: -30px;
   cursor: default;
+  @media screen and (max-width: 430px) {
+    margin-left: 0px;
+  }
 `;
 const Title = styled.h1`
   font-family: "Inter";

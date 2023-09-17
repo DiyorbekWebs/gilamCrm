@@ -5,6 +5,9 @@ const Box = styled.div`
   flex-direction: column;
   gap: 19px;
   margin-left: -30px;
+  @media screen and (max-width: 430px) {
+    margin-left: 0px;
+  }
 `;
 const Title = styled.h1`
   font-family: "Inter";
@@ -22,6 +25,15 @@ const Paragrf = styled.p`
   font-size: 17px;
   line-height: 26px;
   color: #282a2c;
+  @media screen and (max-width: 885px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 770px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 430px) {
+    width: 100%;
+  }
 `;
 const Usliga = () => {
   return (

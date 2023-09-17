@@ -110,13 +110,17 @@ const Login = () => {
   const { value, changeValue } = UseInput(obj);
   const submit = () => {
     axios
-      .post(`${process.env["REACT_APP_URL_ENV"]}`, value, {
+      .post(`${process.env["REACT_APP_URL_ENV"]}auth/login`, value, {
         withCredentials: true,
       })
       .then(function (response) {
-        console.log(response.data);
+        console.log(response);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        console.log(response.data);
+        document.cookie=response.accessToken
+        document.cookie=response.refreshToken
         if (response.data) {
+
           alert("Kirishingiz mumkin!");
           window.location.href = "/home";
         } else {

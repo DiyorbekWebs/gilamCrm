@@ -5,6 +5,10 @@ const Box = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+  @media screen and (max-width: 430px) {
+    gap: 15px;
+
+  }
 `;
 const Img = styled.img`
   width: 150px;
@@ -23,6 +27,18 @@ const Text1 = styled.span`
   font-size: 17px;
   line-height: 28px;
   color: #282a2c;
+  @media screen and (max-width: 430px) {
+    width: 400px;
+  }
+  @media screen and (max-width: 400px) {
+    width: 370px;
+  }
+  @media screen and (max-width: 376px) {
+    width: 360px;
+  }
+  @media screen and (max-width: 361px) {
+    width: 345px;
+  }
 `;
 const Text2 = styled(Text1)`
   font-weight: 600;

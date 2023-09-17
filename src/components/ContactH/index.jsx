@@ -109,15 +109,9 @@ export default function ContectH() {
   const { value, changeValue } = UseInput(obj);
   const send = () => {
     axios
-      .post("https://grm.getter.uz/client-request", value)
+      .post(`${process.env["REACT_APP_URL_ENV"]}client-request`, value)
       .then(function (response) {
-        console.log(response.data);
-        if (response.data) {
-          alert("Kirishingiz mumkin!");
-          window.location.href = "/home";
-        } else {
-          alert("login topilmadi");
-        }
+        console.log(response);
       })
       .catch(function (error) {
         console.log(error);

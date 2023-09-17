@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import UseModal from "../../hooks/useModal";
 import { Link } from "react-router-dom";
@@ -108,38 +108,42 @@ export default function Card({ img, t1, t2, id }) {
     }
   });
   async function add() {
-   await axios
-      .post(`http://192.168.0.119:4000/user/add-favorite-product/${id}`, {
-        withCredentials: true,
-      })
+    await axios
+      .post(
+        `${process.env["REACT_APP_URL_ENV"]}user/add-favorite-product/${id}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMTg5NTk5MC0xMWRhLTRkYzktOWQ4OS05MTVlNjIxMDJiYTIiLCJpYXQiOjE2OTEzNzYyNjgsImV4cCI6MTY5MTM4MzQ2OH0.hpW8v412XUi6QLIS627ZqBmE4kmgYAn98RAuq-b7sr4",
+          },
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((e) => {
         console.log(e);
       })
-      .catch(err =>console.log(err));
+      .catch((err) => console.log(err));
   }
-
-  // async function add() {
-  //   await fetch(`http://192.168.0.119:4000/user/add-favorite-product/${id}`, {
-  //     withCredentials: false,
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((e) => {
-  //       console.log(e, "s");
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
-
-  function remove() {
-    axios
-      .post(`https://grm.getter.uz/user/remove-favorite-product/${id}`, {
-        withCredentials: true,
-      })
+  async function remove() {
+    await axios
+      .post(
+        `${process.env["REACT_APP_URL_ENV"]}user/remove-favorite-product/${id}`,
+        {
+          headers: {
+            Authorization:
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMTg5NTk5MC0xMWRhLTRkYzktOWQ4OS05MTVlNjIxMDJiYTIiLCJpYXQiOjE2OTEzNzYyNjgsImV4cCI6MTY5MTM4MzQ2OH0.hpW8v412XUi6QLIS627ZqBmE4kmgYAn98RAuq-b7sr4",
+          },
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((e) => {
         console.log(e);
-      });
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <Content>
@@ -182,11 +186,7 @@ export default function Card({ img, t1, t2, id }) {
             // className={"heart"}
             onClick={() => {
               toggle2();
-              if (open2) {
-                add();
-              } else {
-                console.log("hechnima");
-              }
+              open2 ? remove() : add();
             }}
           />
           <Size onClick={() => toggleM()} ref={imgRef}>

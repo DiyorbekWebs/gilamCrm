@@ -5,6 +5,9 @@ const Box = styled.div`
   flex-direction: column;
   gap: 34px;
   margin-left: -30px;
+  @media screen and (max-width: 430px) {
+    margin-left: 0px;
+  }
 `;
 const Title = styled.h1`
   font-family: "Inter";

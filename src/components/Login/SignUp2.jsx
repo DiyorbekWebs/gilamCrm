@@ -113,7 +113,7 @@ const SignUp2 = () => {
 
   const submit = () => {
     axios
-      .post("https://grm.getter.uz/user/client", value)
+      .post(`${process.env["REACT_APP_URL_ENV"]}user/client`, value)
       .then(function (response) {
         if (response.data) {
           window.location.href = "/";

@@ -7,38 +7,52 @@ const Content = styled.div`
   gap: 30px;
   cursor: default;
   position: relative;
-`;
-const Img = styled.img`
-  height: 456px;
   width: 323px;
   @media screen and (max-width: 1281px) {
-    height: 486px;
     width: 385px;
   }
   @media screen and (max-width: 886px) {
     width: 300px;
-    height: 470px;
   }
   @media screen and (max-width: 835px) {
-    width: 370px;
-    height: 470px;
+    width: 280px;
   }
   @media screen and (max-width: 801px) {
-    width: 375px;
-    height: 470px;
+    width: 265px;
   }
   @media screen and (max-width: 770px) {
-    width: 355px;
-    height: 450px;
+    width: 250px;
   }
   @media screen and (max-width: 361px) {
     width: 100%;
+  }
+`;
+const Img = styled.img`
+  height: 456px;
+  width: 100%;
+  @media screen and (max-width: 1281px) {
+    height: 486px;
+  }
+  @media screen and (max-width: 886px) {
+    height: 470px;
+  }
+  @media screen and (max-width: 835px) {
+    height: 400px;
+  }
+  @media screen and (max-width: 801px) {
+    height: 380px;
+  }
+  @media screen and (max-width: 770px) {
+    height: 360px;
+  }
+  @media screen and (max-width: 361px) {
     height: 430px;
   }
 `;
 const Bottom = styled.div`
   display: flex;
-  gap: 157px;
+  justify-content: space-between;
+  width: 100%;
 `;
 const Texts = styled.div`
   display: flex;
@@ -58,6 +72,7 @@ const Size = styled.span`
   cursor: pointer;
 `;
 const Text1 = styled.p`
+  width: 150px;
   font-family: "Inter";
   font-style: normal;
   font-weight: 500;
@@ -92,7 +107,7 @@ export default function Card({ img, t1, t2 }) {
   const imgRef = useRef();
   window.addEventListener("click", (e) => {
     if (e.target !== menuRef.current && e.target !== imgRef.current) {
-      closeM(); 
+      closeM();
     }
   });
   return (
@@ -121,7 +136,7 @@ export default function Card({ img, t1, t2 }) {
               zIndex: -1,
               transition: "1s",
               transform: "translateX(-200%)",
-              padding:"0px"
+              padding: "0px",
             }}
           ></Modal>
         )}

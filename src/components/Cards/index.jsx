@@ -74,7 +74,7 @@ const Btn = styled.div`
 export default function Cards() {
   const [value, setValue] = React.useState([]);
   React.useEffect(() => {
-    axios.get("https://grm.getter.uz/product/internet-shop").then((e) => {
+    axios.get(`${process.env['REACT_APP_URL_ENV']}product/internet-shop`).then((e) => {
       setValue(e.data.items);
       console.log(e);
     });
@@ -99,6 +99,7 @@ export default function Cards() {
                   t1={e.model.collection.title}
                   t2={e.model.title}
                 />
+                
               ))}
             </TabPanell>
             {/*<TabPanell>*/}
