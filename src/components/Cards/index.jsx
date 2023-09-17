@@ -3,9 +3,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
 import "./index.css";
 import { tabs } from "../../constant/tabs";
-import { Cards1 } from "../../constant/cards";
+// import { Cards1 } from "../../constant/cards";
 import Card from "./Card";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 const Content = styled.div`
   padding: 85px 0px 96px 0px;
@@ -73,11 +73,31 @@ const Btn = styled.div`
 `;
 export default function Cards() {
   const [value, setValue] = React.useState([]);
+  const token = JSON.parse(localStorage.getItem("token"));
+
   React.useEffect(() => {
-    axios.get(`${process.env['REACT_APP_URL_ENV']}product/internet-shop`).then((e) => {
-      setValue(e.data.items);
-      console.log(e);
-    });
+    axios
+      .get(`${process.env["REACT_APP_URL_ENV"]}product/internet-shop`)
+      .then((e) => {
+        setValue(e.data.items);
+        console.log(e);
+      });
+
+    axios
+      .get(
+        `${process.env["REACT_APP_URL_ENV"]}collection`,
+        {
+          headers: {
+            authorization: token.data.accessToken,
+          },
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((e) => {
+        console.log(e);
+      });
   }, []);
   // console.log(value)
   return (
@@ -99,7 +119,6 @@ export default function Cards() {
                   t1={e.model.collection.title}
                   t2={e.model.title}
                 />
-                
               ))}
             </TabPanell>
             {/*<TabPanell>*/}

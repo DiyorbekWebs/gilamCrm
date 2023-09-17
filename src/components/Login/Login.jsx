@@ -116,6 +116,7 @@ const Login = () => {
       .then(function (response) {
         console.log(response);
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        localStorage.setItem("token", JSON.stringify(response));
         console.log(response.data);
         document.cookie=response.accessToken
         document.cookie=response.refreshToken
