@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import UseInput from "../../hooks/useInput";
-import { useAxios } from "../../hooks/useAxios";
-import axios from "axios";
-import { request } from "../../config/reques";
+import { AuthSignUp } from "../../service/auth";
 const Box = styled.div`
   padding: 40px 0px 215px 0px;
 `;
@@ -110,18 +108,17 @@ const SignUp2 = () => {
     password: "",
   };
   const { value, changeValue } = UseInput(obj);
-
-  const submit = () => {
-    axios
-      .post(`${process.env["REACT_APP_URL_ENV"]}user/client`, value)
-      .then(function (response) {
-        if (response.data) {
-          window.location.href = "/";
+  const navigate = useNavigate();
+  const submit = async () => {
+    try {
+      await AuthSignUp(value).then((res) => {
+        if (res.status === 201) {
+          navigate("/");
         }
-      })
-      .catch(function (error) {
-        console.log(error);
       });
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <Div>

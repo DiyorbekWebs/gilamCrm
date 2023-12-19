@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { styled } from "styled-components";
 import { Img } from "../../assets/img/img";
 import { Btn } from "../../components/Login/Confirmation";
 import UseInput from "../../hooks/useInput";
 import axios from "axios";
+import { ProfilGet } from "../../service/profil";
 const Box = styled.div`
   display: flex;
   gap: 40px;
@@ -11,9 +12,47 @@ const Box = styled.div`
     flex-direction: column;
   }
 `;
+const ImageContainer = styled.label`
+  position: relative;
+  display: inline-block; /* Allow positioning of overlay */
+  border-radius: 91.5px;
+  border: 1px solid rgba(204, 204, 204, 0.8);
+  background: rgba(234, 234, 234, 0.6);
+  background-size: cover;
+  cursor: pointer;
+  transition: 0.2s;
+  &:hover::before {
+    content: "edit";
+    width: 100%;
+    border-radius: 91.5px;
+    height: 100%;
+    background: #0000001b;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    padding-top: 50px;
+  }
+
+  img {
+    max-width: 100px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+`;
 const DivImg = styled.img`
   width: 100px;
+  border-radius: 91.5px;
+  border: 1px solid rgba(204, 204, 204, 0.8);
   height: 100px;
+  background-size: cover;
+  cursor: pointer;
 `;
 const Right = styled(Box)`
   gap: 68px;
@@ -67,33 +106,54 @@ const Input = styled.input`
   }
 `;
 const Profill = () => {
+  // Profill start
+  const [picture, setPicture] = useState(null);
+  const fileInputRef = useRef(null);
+  const handlePictureChange = (event) => {
+    const file = event.target.files[0];
+    setPicture(file);
+  };
+  const handleClickEdit = () => {
+    fileInputRef.current.click();
+  };
+  // Profill end
+  const [data, setData] = React.useState({});
   const user = JSON.parse(localStorage.getItem("user"));
-
-  const { firstName, id } = user;
-  // console.log(firstName);
-
+  const { id } = user;
   const obj = {
     name: "",
     location: "",
     phone: "",
   };
-  const { value, changeValue } = UseInput(obj);
-  const send = () => {
-    axios
-      .patch(`https://grm.getter.uz/user/client/${id}`, value)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  const { value, changeValue } = UseInput(data);
+  React.useEffect(() => {
+    ProfilGet(id).then((res) => {
+      setData(res);
+    });
+  }, []);
+  const send = () => {};
   return (
     <Box>
-      <DivImg src={Img} />
+      {/* <DivImg src={Img} /> */}
+      <div>
+        <ImageContainer onClick={handleClickEdit}>
+          {picture ? (
+            <DivImg src={URL.createObjectURL(picture)} alt="Profile" />
+          ) : (
+            <DivImg src={Img } alt="Default" />
+          )}
+        </ImageContainer>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handlePictureChange}
+          style={{ display: "none" }}
+          ref={fileInputRef}
+        />
+      </div>
       <Right>
         <Users>
-          <Text>{firstName}</Text>
+          {/* <Text>{firstName}</Text> */}
           <SignUp>
             Регистрировани в: <Date>12.04.2023</Date>
           </SignUp>

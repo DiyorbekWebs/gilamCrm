@@ -1,22 +1,18 @@
 import React from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import styled from "styled-components";
 import "./index.css";
-import { tabs } from "../../constant/tabs";
-// import { Cards1 } from "../../constant/cards";
 import Card from "./Card";
-// import { Link } from "react-router-dom";
-import axios from "axios";
+import { CollectionGet } from "../../service/collection";
 const Content = styled.div`
   padding: 85px 0px 96px 0px;
 `;
-const Tabss = styled(Tabs)`
+const Tabss = styled.div`
   display: flex;
   flex-direction: column;
   gap: 70px;
   align-items: center;
 `;
-const TabListt = styled(TabList)`
+const TabListt = styled.ul`
   display: flex;
   gap: 41px;
   border: none !important;
@@ -33,20 +29,21 @@ const TabListt = styled(TabList)`
     justify-content: center;
   }
 `;
-const TabPanell = styled(TabPanel)`
+const TabPanell = styled.div`
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 `;
-const Tab1 = styled(Tab)`
+const Tab1 = styled.li`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
   line-height: 34px;
   color: #282a2c;
+  cursor: pointer;
   @media screen and (max-width: 1281px) {
     font-size: 25px;
   }
@@ -72,45 +69,28 @@ const Btn = styled.div`
   color: #282828;
 `;
 export default function Cards() {
-  const [value, setValue] = React.useState([]);
-  const token = JSON.parse(localStorage.getItem("token"));
-
+  const [data, setData] = React.useState([]);
+  const [cards, setCards] = React.useState([]);
+  async function getInfo() {
+    await CollectionGet().then((res) => setData(res.items));
+  }
+  console.log(data);
   React.useEffect(() => {
-    axios
-      .get(`${process.env["REACT_APP_URL_ENV"]}product/internet-shop`)
-      .then((e) => {
-        setValue(e.data.items);
-        console.log(e);
-      });
-
-    axios
-      .get(
-        `${process.env["REACT_APP_URL_ENV"]}collection`,
-        {
-          headers: {
-            authorization: token.data.accessToken,
-          },
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((e) => {
-        console.log(e);
-      });
+    getInfo();
   }, []);
-  // console.log(value)
   return (
     <Content>
       <div className="container">
         <Box>
           <Tabss>
             <TabListt>
-              {tabs?.map((e) => (
-                <Tab1 key={e.id}>{e.text}</Tab1>
+              {data?.map((e) => (
+                <Tab1 key={e.id} onClick={() => setCards(e.model)}>
+                  {e.title}
+                </Tab1>
               ))}
             </TabListt>
-            <TabPanell>
+            {/* <TabPanell>
               {value?.map((e) => (
                 <Card
                   key={e.id}
@@ -120,7 +100,7 @@ export default function Cards() {
                   t2={e.model.title}
                 />
               ))}
-            </TabPanell>
+            </TabPanell> */}
             {/*<TabPanell>*/}
             {/*  {Cards1?.map((e) => (*/}
             {/*    <Card key={e.id} img={e.img} t1={e.text1} t2={e.text2} />*/}

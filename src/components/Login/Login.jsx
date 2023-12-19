@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import UseInput from "../../hooks/useInput";
-import axios from "axios";
+import { AuthLogin } from "../../service/auth";
 const Box = styled.div`
   padding: 40px 0px 215px 0px;
 `;
@@ -108,27 +108,16 @@ const Login = () => {
     password: "",
   };
   const { value, changeValue } = UseInput(obj);
-  const submit = () => {
-    axios
-      .post(`${process.env["REACT_APP_URL_ENV"]}auth/login`, value, {
-        withCredentials: true,
-      })
-      .then(function (response) {
-        console.log(response);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
-        localStorage.setItem("token", JSON.stringify(response));
-        console.log(response.data);
-        document.cookie=response.accessToken
-        document.cookie=response.refreshToken
-        if (response.data) {
-
-          alert("Kirishingiz mumkin!");
-          window.location.href = "/home";
-        } else {
-          alert("login topilmadi");
+  const router = useNavigate();
+  const submit = async () => {
+    await AuthLogin(value)
+      .then((response) => {
+        if (response.status === 200) {
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          router(`/home`);
         }
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
