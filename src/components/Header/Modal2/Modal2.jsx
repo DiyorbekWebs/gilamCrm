@@ -6,10 +6,12 @@ const Content = styled.div`
   position: absolute;
   width: 100%;
   background-color: #ffff;
-  z-index: 1;
   top: 100%;
   left: 0;
   box-shadow: 0px 120px 134px rgba(0, 0, 0, 0.25);
+  transform-origin:top;
+  transition: transform 0.5s ease-in-out;
+  transform: rotateX(0deg);
 `;
 const Left = styled.div`
   width: 500px;
@@ -29,15 +31,15 @@ const Box = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   @media screen and (max-width: 885px) {
-    padding: 60px 0px 60px 20px;    
+    padding: 60px 0px 60px 20px;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
   }
 `;
-const Modal2 = () => {
+const Modal2 = ({ style1 }) => {
   return (
-    <Content>
+    <Content onClick={(e) => e.stopPropagation()} style={style1}>
       <div className="container">
         <Box>
           <Left>

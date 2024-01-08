@@ -3,8 +3,9 @@ import { styled } from "styled-components";
 import { Img } from "../../assets/img/img";
 import { Btn } from "../../components/Login/Confirmation";
 import UseInput from "../../hooks/useInput";
-import axios from "axios";
-import { ProfilGet } from "../../service/profil";
+import { ProfilGet, ProfillUpdate } from "../../service/profil";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Box = styled.div`
   display: flex;
   gap: 40px;
@@ -120,27 +121,66 @@ const Profill = () => {
   const [data, setData] = React.useState({});
   const user = JSON.parse(localStorage.getItem("user"));
   const { id } = user;
-  const obj = {
-    name: "",
-    location: "",
-    phone: "",
-  };
+  // const obj = {
+  //   firstName: "",
+  //   lastName: "",
+  //   avatar: "",
+  //   email: "",
+  //   phone: "",
+  // };
   const { value, changeValue } = UseInput(data);
   React.useEffect(() => {
     ProfilGet(id).then((res) => {
       setData(res);
     });
   }, []);
-  const send = () => {};
+  const send = () => {
+    ProfillUpdate(id, value).then((res) => {
+      try {
+        if (res.status === 200) {
+          toast.success("Ссылка успешно изменена!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        }
+      } catch (error) {
+        console.log("eror");
+      }
+    });
+  };
+
   return (
     <Box>
       {/* <DivImg src={Img} /> */}
       <div>
+        <div>
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
+        </div>
+
         <ImageContainer onClick={handleClickEdit}>
           {picture ? (
             <DivImg src={URL.createObjectURL(picture)} alt="Profile" />
           ) : (
-            <DivImg src={Img } alt="Default" />
+            <DivImg src={Img} alt="Default" />
           )}
         </ImageContainer>
         <input
@@ -161,9 +201,10 @@ const Profill = () => {
         <Form>
           <Inputs>
             <Input
-              placeholder="Имя "
-              name="name"
+              placeholder="Имя"
+              name="firstName"
               id="name"
+              defaultValue={data.firstName}
               type="text"
               onChange={changeValue}
             />
@@ -172,20 +213,23 @@ const Profill = () => {
               name="email"
               id="mail"
               type="text"
+              defaultValue={data.email}
               onChange={changeValue}
             />
             <Input
-              placeholder="Фамилия "
-              // name="lastname"
-              // id="surname"
+              placeholder="Фамилия"
+              name="lastName"
+              id="surname"
               type="text"
-              // onChange={changeValue}
+              defaultValue={data.lastName}
+              onChange={changeValue}
             />
             <Input
               placeholder="Номер телефона "
               name="phone"
               id="phone"
               type="text"
+              defaultValue={data.phone}
               onChange={changeValue}
             />
           </Inputs>

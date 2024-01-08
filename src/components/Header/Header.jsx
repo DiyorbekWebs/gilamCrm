@@ -172,18 +172,27 @@ const ItemM = styled(Item)`
 `;
 
 export function Header() {
-  const { open, closeM, toggleM } = UseModal();
-  const { open: open2,closeM:closeM2, toggleM: toggleM2 } = UseModal();
+  const { open, openM, closeM, toggleM } = UseModal();
+  const { open: open2, closeM: closeM2, toggleM: toggleM2 } = UseModal();
 
   return (
-    <Content>
+    <Content
+      onClick={() => {
+        closeM();
+      }}
+    >
       <div className="container">
         <Box>
           <Right>
             <Link to={"home"}>
               <Logotip src={Logo} />
             </Link>
-            <Link  onClick={() => toggleM()}>
+            <Link
+              onClick={(e) => {
+                toggleM();
+                e.stopPropagation()
+              }}
+            >
               <Catalog>
                 <img src={Icon1} alt="" />
                 <ProText>Каталог продуктов</ProText>
@@ -217,7 +226,16 @@ export function Header() {
             </Link>
           </Left>
           <BurgerImg onClick={() => toggleM2()} src={Burger} alt="" />
-          {open ? <Modal2 /> : null}
+          {open ? (
+            <Modal2 style1={{ transform: "rotateX(0deg)", zIndex: 1 }} />
+          ) : (
+            <Modal2
+              style1={{
+                zIndex: 1,
+                transform: "rotateX(90deg)",
+              }}
+            />
+          )}
           {open2 ? (
             <Modal>
               <ListM>
