@@ -121,13 +121,13 @@ const Profill = () => {
   const [data, setData] = React.useState({});
   const user = JSON.parse(localStorage.getItem("user"));
   const { id } = user;
-  // const obj = {
-  //   firstName: "",
-  //   lastName: "",
-  //   avatar: "",
-  //   email: "",
-  //   phone: "",
-  // };
+  const obj = {
+    firstName: "",
+    lastName: "",
+    avatar: "",
+    email: "",
+    phone: "",
+  };
   const { value, changeValue } = UseInput(data);
   React.useEffect(() => {
     ProfilGet(id).then((res) => {
@@ -150,14 +150,13 @@ const Profill = () => {
           });
         }
       } catch (error) {
-        console.log("eror")
+        console.log("eror");
       }
     });
   };
 
   return (
     <Box>
-      {/* <DivImg src={Img} /> */}
       <div>
         <div>
           <ToastContainer
