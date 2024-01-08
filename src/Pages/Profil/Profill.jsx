@@ -150,7 +150,7 @@ const Profill = () => {
           });
         }
       } catch (error) {
-        console.log("eror");
+        console.log("eror")
       }
     });
   };
